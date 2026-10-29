@@ -1,0 +1,28 @@
+; generated layout, hand-tuned
+name: Kitchen Garden
+tagline: A weasel lives in the drains. It wants your stragglers.
+chicks: 8
+foxes: 1
+weasels: 1
+cunning: 2
+fence: 9
+quota: 0.5
+map:
+ssssssssssssssssssssssssssssssss
+s.......c.........c..........F.s
+s........................*.....s
+sTTT..vvvv.vvvv.vvvv.vvvv.www..s
+sTTT..vvvv.vvvv.vvvv.vvvv.www..s
+sTTT..vvvv.vvvv.vvvv.vvvv.www..s
+s............c............www..s
+sCCC..ffff.####=####.ffff......s
+sCCDH.ffff.####=####.ffff......s
+sCCC......*..............c.....s
+s..............c..........#=#..s
+svvv..vvvv.vvvv.vvvv.vvvv.#=#..s
+svvv..vvvv.vvvv.vvvv.vvvv.#=#..s
+svvv..vvvv.vvvv.vvvv.vvvv.#=#..s
+svvv......................#=#..s
+s.........,,,,,,,,,,,......W...s
+s....*..c...........c........c.s
+ssssssssssssssssssssssssssssssss

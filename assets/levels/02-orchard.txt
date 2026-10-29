@@ -1,0 +1,28 @@
+; generated layout, hand-tuned
+name: The Orchard
+tagline: Gates in the windbreak swing on their own. Mind the timing.
+chicks: 8
+foxes: 1
+cunning: 2
+fence: 8
+gate_period: 6
+quota: 0.5
+map:
+pppppppppppppppppppppppppppppppp
+p,,,,,,,,,,,,,,,,,,,,,,,,,CCC,,p
+pc...........c.......c....CDC..p
+p.TT..TT..TT..TT..TT..fff..H...p
+p.TT..TT..TT..TT..TT..fff#..ww.p
+p........................#..ww.p
+p.###.#####G#####G####.#.#..ww.p
+p........*.................cww.p
+p.TT..TT..TT..TT..TT..vv.#..ww.p
+p.TT..TT..TT..TT..TT..vv.#..ww.p
+p...kb......kb........vv.......p
+p...................*.vv..s.ww.p
+p.TT..TT..TT..TT..TT..vv..s.ww.p
+p.TT..TT..TT..TT..TT..vv..s.ww.p
+p.ffffff..ffff......kb....s.ww.p
+p....*..........c.............Fp
+p,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,p
+pppppppppppppppppppppppppppppppp

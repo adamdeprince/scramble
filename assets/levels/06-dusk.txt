@@ -1,0 +1,30 @@
+; generated layout, hand-tuned
+name: Dusk
+tagline: The light is going. Everyone is hungry.
+chicks: 10
+foxes: 2
+weasels: 1
+hawk: yes
+cunning: 4
+fence: 10
+gate_period: 7
+quota: 0.5
+map:
+pppppppppppppppppppppppppppppppp
+p,,,,,,,,c,,,,,c,,,,,,c,,,,,,,,p
+pF............................Fp
+p.#######..vvvvvvvvvv..#######.p
+p.#######..vvv....vvv..#######.p
+p..........vvv.bb.vvv..........p
+p.TT.wwwww.....*......wwwww.TT.p
+p.TT.wwwww.###.kb.###.wwwww.TT.p
+p.TT.......###.bk.###.......TT.p
+pc..........G......G..........cp
+p.sss=ssss.###....###.ssss=sss.p
+p.sss=ssss.###....###.ssss=sss.p
+pbkbbW....*..........*....Wbbbbp
+p............CCCCCC............p
+p,,,,,,,.fff.CCCCCC.fff.,,,,,,,p
+p,,c,,,,.fff.CCDDCC.fff.,,,,c,,p
+p,,,,,,,.fff...H....fff.,,,,,,,p
+pppppppppppppppppppppppppppppppp

@@ -1,0 +1,58 @@
+[package]
+name = "silkie-scramble"
+version = "0.1.0"
+edition = "2024"
+rust-version = "1.85"
+description = "A maze-chase arcade game about keeping an unruly flock of Silkie chicks alive, for kitty and Silkie terminals"
+readme = "README.md"
+publish = false
+default-run = "silkie-scramble"
+
+[lib]
+name = "silkie_scramble"
+path = "src/lib.rs"
+
+[[bin]]
+name = "silkie-scramble"
+path = "src/main.rs"
+
+[[bin]]
+name = "artgen"
+path = "src/bin/artgen.rs"
+
+[[bin]]
+name = "netsim"
+path = "src/bin/netsim.rs"
+
+[dependencies]
+anyhow = "1.0.104"
+base64 = "0.23.1"
+clap = { version = "4.6.7", features = ["derive"] }
+crossterm = { version = "0.29.0", default-features = false }
+directories = "6.0.0"
+flate2 = "1.1.10"
+glam = { version = "0.34.1", features = ["serde"] }
+image = { version = "0.25.10", default-features = false, features = ["png"] }
+libc = "0.2.191"
+pathfinding = "4.16.0"
+rand = "0.10.3"
+rand_chacha = "0.10.0"
+serde = { version = "1.0.229", features = ["derive"] }
+serde_json = "1.0.154"
+signal-hook = { version = "0.4.5", default-features = false, features = ["iterator"] }
+tiny-skia = { version = "0.12.0", features = ["std", "simd", "png-format"] }
+tracing = "0.1.44"
+tracing-subscriber = { version = "0.3.23", features = ["fmt", "env-filter"] }
+ttf-parser = "0.25.1"
+
+# The game rasterizes sprites and scenery on the CPU; unoptimized builds of
+# tiny-skia and image are too slow to iterate with, so optimize dependencies
+# even in debug builds.
+[profile.dev]
+opt-level = 1
+
+[profile.dev.package."*"]
+opt-level = 3
+
+[profile.release]
+debug = "line-tables-only"

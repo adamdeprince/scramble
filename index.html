@@ -1,0 +1,340 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="Gather your chicks, outwit the foxes, and bring the brood home. Meet Silkie Scramble, a garden maze-chase game for Silkie and kitty terminals, with tablet-drawn fences in Silkie.">
+  <meta name="theme-color" content="#254b37">
+  <title>Silkie Scramble — Bring the brood home</title>
+  <style>
+    @font-face {
+      font-family: Lilita;
+      src: url('assets/fonts/LilitaOne-Regular.ttf') format('truetype');
+      font-style: normal;
+      font-weight: 400;
+      font-display: swap;
+    }
+    :root {
+      color-scheme: light;
+      --paper: #faf7ed;
+      --ink: #253b2e;
+      --muted: #526353;
+      --green: #254b37;
+      --line: #d4d9c8;
+      --orange: #aa431e;
+    }
+    * { box-sizing: border-box; }
+    html { scroll-behavior: smooth; scroll-padding-top: 1.5rem; }
+    body { margin: 0; background: var(--paper); color: var(--ink); font-family: system-ui, sans-serif; line-height: 1.65; }
+    a { color: inherit; text-underline-offset: .22em; }
+    a:hover { text-decoration-thickness: 2px; }
+    a:focus-visible { outline: 3px solid #b74c21; outline-offset: 5px; }
+    img, video { display: block; width: 100%; height: auto; }
+    figure { margin: 0; }
+    picture { display: block; }
+    .hero > *, .split > *, .highlights > * { min-width: 0; }
+    .media-note { margin-top: 1rem; }
+    .highlights { display: grid; grid-template-columns: 1fr 1fr; gap: 1.5rem; margin-top: 2rem; }
+    .highlights img { aspect-ratio: 500 / 430; object-fit: contain; background: #101b12; }
+    h1, h2, h3, p { margin-top: 0; }
+    h1, h2, h3 { line-height: 1.08; font-weight: 400; font-family: Lilita, Georgia, serif; }
+    h1 { font-size: clamp(3.7rem, 8.5vw, 7.8rem); letter-spacing: -.025em; margin-bottom: 1.35rem; }
+    h2 { font-size: clamp(2.3rem, 4.5vw, 3.8rem); margin-bottom: 1.3rem; }
+    h3 { font-size: 1.65rem; margin-bottom: .7rem; }
+    p { margin-bottom: 1.1rem; }
+    .wrap { width: min(1160px, 90%); margin-inline: auto; }
+    .skip { position: absolute; top: -10rem; left: 1rem; padding: .7rem 1rem; background: white; z-index: 2; }
+    .skip:focus { top: 1rem; }
+    .header { display: flex; align-items: center; justify-content: space-between; gap: 1rem 2rem; flex-wrap: wrap; padding-block: 1.5rem; border-bottom: 1px solid var(--line); }
+    .brand { font: 1.6rem Lilita, Georgia, serif; text-decoration: none; }
+    nav { display: flex; flex-wrap: wrap; gap: .6rem 1.7rem; font-size: .9rem; font-weight: 650; }
+    nav a { text-decoration: none; }
+    nav a:hover { text-decoration: underline; }
+    .eyebrow { font: 700 .76rem/1.5 ui-monospace, monospace; text-transform: uppercase; letter-spacing: .14em; margin-bottom: 1.1rem; }
+    .hero { display: grid; grid-template-columns: 1.35fr 1fr; align-items: end; gap: 3rem; padding-block: 4.8rem 3rem; }
+    .hero h1 span { color: var(--orange); }
+    .intro { font-size: 1.16rem; color: var(--muted); max-width: 42ch; }
+    .actions { display: flex; flex-wrap: wrap; align-items: center; gap: 1rem 1.5rem; margin-block: 1.7rem 1rem; }
+    .button { display: inline-flex; align-items: center; justify-content: center; padding: .8rem 1.4rem; background: var(--green); color: white; border: 2px solid var(--green); border-radius: 6px; font-weight: 700; text-decoration: none; }
+    .button:hover { background: #346347; border-color: #346347; }
+    .small { font-size: .86rem; color: var(--muted); }
+    .game-shot { overflow: hidden; border: 1px solid #53634c; border-radius: 10px; background: var(--green); box-shadow: 0 15px 35px #254b3715; }
+    .caption { display: flex; flex-wrap: wrap; justify-content: space-between; gap: .4rem 2rem; padding: .9rem 1.2rem; color: #f0efdb; font: .76rem/1.6 ui-monospace, monospace; }
+    section { padding-block: 4.8rem; }
+    .section-intro { max-width: 64ch; color: var(--muted); font-size: 1.08rem; }
+    .steps { display: grid; grid-template-columns: repeat(3, 1fr); gap: 2.5rem; margin-top: 2.5rem; }
+    .step { border-top: 2px solid var(--line); padding-top: 1.2rem; }
+    .number { color: var(--orange); font: .85rem ui-monospace, monospace; display: block; margin-bottom: 1rem; }
+    .step p { color: var(--muted); }
+    .rule { border-left: 3px solid var(--orange); padding: .2rem 0 .2rem 1.2rem; margin-top: 1.7rem; }
+    .rule p { margin-bottom: 0; }
+    .fence-section { background: var(--green); color: var(--paper); }
+    .fence-section .eyebrow { color: #f6ca7f; }
+    .fence-heading { display: grid; grid-template-columns: 1fr 1fr; gap: 3rem; align-items: center; margin-bottom: 2rem; }
+    .fence-heading p:last-child { color: #e1e7d7; }
+    .fence-photo { border: 1px solid #769475; border-radius: 8px; overflow: hidden; }
+    .fence-photo figcaption { display: grid; grid-template-columns: 1fr 1fr; padding: .8rem 1rem; gap: 1rem; font: .8rem/1.5 ui-monospace, monospace; color: #e1e7d7; }
+    .fence-section .step { border-color: #66816b; }
+    .fence-section .number { color: #f6ca7f; }
+    .fence-section .step p { color: #e1e7d7; }
+    .fence-notes { margin-top: 2rem; padding: 1.4rem 1.6rem; background: #1e3f2e; border-radius: 6px; }
+    .fence-notes p:last-child { margin-bottom: 0; }
+    .split { display: grid; grid-template-columns: 1fr 1fr; gap: 4rem; }
+    .predators { display: grid; gap: 1.4rem; }
+    .predators article { border-bottom: 1px solid var(--line); padding-bottom: .5rem; }
+    .predators h3 { color: var(--orange); }
+    .predators p { color: var(--muted); }
+    .level-note { background: #e8eddd; border-radius: 8px; padding: 1.5rem; margin-top: 1.7rem; }
+    .level-note p:last-child { margin: 0; }
+    .terminal-section { border-top: 1px solid var(--line); }
+    .terminals { display: grid; grid-template-columns: 1fr 1fr; gap: 1.5rem; margin-block: 2rem 1.2rem; }
+    .terminal { padding: 1.8rem; border: 1px solid #bdc9b4; border-radius: 8px; background: #f0f2e7; }
+    .terminal h3 { font-size: 2rem; }
+    .terminal p { color: var(--muted); }
+    .terminal ul { padding-left: 1.2rem; margin-bottom: 1.4rem; }
+    .terminal li + li { margin-top: .5rem; }
+    .terminal-link { font-weight: 700; }
+    .comparison { margin-top: 2.5rem; }
+    .comparison table { table-layout: fixed; overflow-wrap: anywhere; }
+    .comparison .feature-column { width: 22%; }
+    .comparison tbody th { width: auto; font-weight: 700; }
+    .comparison tbody tr:nth-child(odd) { background: #f0f2e7; }
+    .comparison .small { margin-top: 1rem; }
+    .setup { padding-top: 2rem; }
+    pre { background: #20382a; color: #f3edcf; padding: 1.5rem; border-radius: 8px; overflow-x: auto; font-size: .9rem; line-height: 1.9; }
+    code { font-family: ui-monospace, SFMono-Regular, Consolas, monospace; overflow-wrap: anywhere; }
+    pre code { overflow-wrap: normal; }
+    .controls { background: #efecdf; }
+    table { width: 100%; border-collapse: collapse; font-size: .95rem; }
+    caption { text-align: left; font-weight: 700; margin-bottom: .6rem; }
+    th, td { text-align: left; vertical-align: top; padding: .85rem .7rem; border-bottom: 1px solid #c8cebd; }
+    thead th { font-size: .76rem; letter-spacing: .08em; text-transform: uppercase; }
+    tbody th { font-weight: 500; width: 40%; }
+    kbd { display: inline-block; background: #faf7ed; border: 1px solid #bac3ad; border-bottom-width: 2px; border-radius: 4px; padding: .05rem .35rem; font: .82rem/1.5 ui-monospace, monospace; }
+    footer { display: flex; flex-wrap: wrap; justify-content: space-between; gap: .7rem 2rem; padding-block: 1.8rem; font-size: .85rem; color: var(--muted); }
+    footer p { margin: 0; }
+    @media (max-width: 760px) {
+      .hero, .fence-heading, .split, .highlights { grid-template-columns: 1fr; gap: 1.5rem; }
+      .hero { padding-top: 3rem; }
+      .hero h1 { margin-bottom: 0; }
+      .intro { max-width: none; }
+      .steps { grid-template-columns: 1fr; gap: 1rem; }
+      .step { display: grid; grid-template-columns: 2rem 1fr; column-gap: .5rem; }
+      .step .number { grid-row: 1 / 3; padding-top: .3rem; }
+      .step p { grid-column: 2; }
+      .terminals { grid-template-columns: 1fr; }
+      section { padding-block: 3.3rem; }
+      .fence-photo figcaption { font-size: .7rem; }
+      .controls .split { gap: 2rem; }
+      .comparison table { font-size: .82rem; }
+      .comparison th, .comparison td { padding: .7rem .4rem; }
+    }
+    @media (prefers-reduced-motion: reduce) { html { scroll-behavior: auto; } }
+    @media print {
+      body { background: white; }
+      .header nav, .actions, .skip { display: none; }
+      section { padding-block: 1.5rem; }
+      .fence-section, .controls, .fence-notes { background: white; color: #253b2e; }
+      .fence-section .step p, .fence-heading p:last-child, .fence-section .eyebrow, .fence-photo figcaption { color: #253b2e; }
+      .game-shot { box-shadow: none; }
+    }
+  </style>
+</head>
+<body>
+  <a class="skip" href="#main">Skip to content</a>
+  <header class="header wrap">
+    <a class="brand" href="#">Silkie Scramble</a>
+    <nav aria-label="Main navigation">
+      <a href="#watch">Watch the game</a>
+      <a href="#how-to-play">How to play</a>
+      <a href="#draw-walls">Draw walls</a>
+      <a href="#get-started">Get started</a>
+      <a href="#controls">Controls</a>
+    </nav>
+  </header>
+  <main id="main">
+    <div class="wrap">
+      <div class="hero">
+        <div>
+          <p class="eyebrow">A garden chase. In your terminal.</p>
+          <h1>Small chicks.<br>Big <span>scramble.</span></h1>
+        </div>
+        <div>
+          <p class="intro">You’re a fluffy Silkie hen with a scattered brood and a fox on your tail. Gather the chicks, weave through the garden, and bring them home to the coop.</p>
+          <div class="actions">
+            <a class="button" href="#get-started">Get ready to play <span aria-hidden="true">&nbsp;→</span></a>
+            <a href="#how-to-play">Learn the ropes</a>
+          </div>
+          <p class="small">Play in <strong>Silkie or kitty terminal</strong>. This page is your guide; the game runs in your terminal.</p>
+        </div>
+      </div>
+      <figure class="game-shot">
+        <picture>
+          <source srcset="docs/images/brood-hdr.avif" type="image/avif">
+          <img src="docs/images/brood.png" width="2400" height="1584" alt="Actual gameplay in Silkie: bright sparkles surround the coop as the hen brings chicks home in Morning Meadow.">
+        </picture>
+        <figcaption class="caption"><span>IN THE GAME / Morning Meadow</span><span>Gather the chicks. Mind the fox. Bring them home.</span></figcaption>
+      </figure>
+      <section id="watch" aria-labelledby="watch-title">
+        <p class="eyebrow">See the flock in motion</p>
+        <h2 id="watch-title">A little run around the garden.</h2>
+        <p class="section-intro">Watch the built-in autopilot gather chicks and bring them home in Morning Meadow. This is a recording of the game running in Silkie, with the same rules and controls you play with.</p>
+        <figure class="game-shot">
+          <video controls playsinline preload="metadata" poster="docs/images/brood.png" width="1200" height="792" aria-describedby="video-caption">
+            <source src="docs/video/gameplay-hdr.mp4" type='video/mp4; codecs="hvc1.2.4.L120.B0"' media="(dynamic-range: high)">
+            <source src="docs/video/gameplay.mp4" type="video/mp4">
+            <p><a href="docs/video/gameplay.mp4">Download the gameplay video.</a></p>
+          </video>
+          <figcaption class="caption" id="video-caption"><span>ACTUAL GAMEPLAY / About 40 seconds</span><span>Silent recording · Autopilot demonstration</span></figcaption>
+        </figure>
+        <p class="small media-note"><a href="docs/video/gameplay-hdr.mp4">Download HDR video</a> · <a href="docs/video/gameplay.mp4">Download standard video</a></p>
+        <div class="highlights">
+          <div>
+            <h3>Little sparks. Extra shine.</h3>
+            <p>The screenshots preserve the game’s HDR highlights. Look for the white-hot centres of the sparkles by the coop: the close-up shows the same captured pixels at a larger size.</p>
+            <p class="small">HDR brightness needs an HDR-capable display and browser, with HDR enabled. On other screens the images may be tone-mapped to standard brightness. PNG fallbacks are provided for browsers without AVIF support.</p>
+            <p class="small"><a href="docs/images/brood-hdr.avif">Open the full HDR screenshot</a> · <a href="docs/MEDIA.md">Capture details</a></p>
+          </div>
+          <figure class="game-shot">
+            <picture>
+              <source srcset="docs/images/glints-hdr.avif" type="image/avif">
+              <img src="docs/images/glints.png" width="500" height="430" loading="lazy" alt="Close-up of the captured coop delivery: sparkling white cores stand out against the red coop and garden path.">
+            </picture>
+            <figcaption class="caption"><span>HDR DETAIL / A safe arrival</span><span>Crop of the gameplay capture</span></figcaption>
+          </figure>
+        </div>
+        <figure class="game-shot media-note">
+          <picture>
+            <source srcset="docs/images/celebration-hdr.avif" type="image/avif">
+            <img src="docs/images/celebration.png" width="2400" height="1584" loading="lazy" alt="The Lily Pond level is cleared with seven chicks home; bright star-shaped sparkles scatter over the pond and garden.">
+          </picture>
+          <figcaption class="caption"><span>HDR / Lily Pond cleared</span><span>Seven chicks home. A garden full of sparkles.</span></figcaption>
+        </figure>
+      </section>
+      <section id="how-to-play" aria-labelledby="play-title">
+        <p class="eyebrow">01 / The daily chicken run</p>
+        <h2 id="play-title">Keep your little flock together.</h2>
+        <p class="section-intro">Silkie Scramble is a maze-chase arcade game written in Rust. Its garden of hedges, gates, flower beds, and vegetable patches is rendered with graphics inside a text terminal.</p>
+        <div class="steps">
+          <article class="step"><span class="number">01</span><h3>Round them up.</h3><p>Walk into a chick to gather it. Your brood follows in a wobbly procession, cutting corners, bumping into each other, and sometimes wandering off after a butterfly.</p></article>
+          <article class="step"><span class="number">02</span><h3>Pick your route.</h3><p>Steer around predators, time your passage through gates, and put up temporary fences. Keep an eye on the stragglers: a long, noisy brood attracts foxes from farther away.</p></article>
+          <article class="step"><span class="number">03</span><h3>Bring them home.</h3><p>Lead the chicks to the coop door and they hop inside. Delivering more together earns more per chick: one scores 100 points, three score 450, and six score 1,350.</p></article>
+        </div>
+        <div class="rule"><p><strong>Small safe trips or one big brood?</strong> That’s the gamble. A level ends when every chick is home or gone. Save at least half to advance; quick runs and a perfect brood earn bonuses.</p></div>
+      </section>
+    </div>
+
+    <section class="fence-section" id="draw-walls" aria-labelledby="fence-title">
+      <div class="wrap">
+        <div class="fence-heading">
+          <div><p class="eyebrow">02 / A little help from your tablet</p><h2 id="fence-title">Draw a wall.<br>Buy your brood some time.</h2></div>
+          <p>Using <strong>Silkie terminal with a compatible pen tablet or touchscreen</strong>? Draw directly across a garden path with your stylus, or with your finger on a touchscreen. Your stroke becomes a temporary fence that blocks the fox’s route and sends it the long way around.</p>
+        </div>
+        <figure class="fence-photo">
+          <picture>
+            <source srcset="docs/images/fence-hdr.avif" type="image/avif">
+            <img src="docs/images/fence.png" width="1450" height="500" loading="lazy" alt="Actual HDR gameplay in Dusk: a wooden fence blocks the path beside a flower bed, while hearts appear above a gathered chick and sparkles shine at the coop.">
+          </picture>
+          <figcaption><span>A temporary fence beside the coop in Dusk.</span><span>Draw and lift to build, or press Space to drop a hurdle.</span></figcaption>
+        </figure>
+        <div class="steps">
+          <article class="step"><span class="number">01</span><h3>Find a gap.</h3><p>While playing in Silkie, aim at an unoccupied stretch of path between the fox and your flock. Leave a way for the hen and chicks to reach the coop.</p></article>
+          <article class="step"><span class="number">02</span><h3>Draw across it.</h3><p>Put your pen down and drag, or touch and drag on a supported touchscreen. With Silkie’s pen-ink support, the terminal draws the live stroke immediately, even when the game runs over SSH.</p></article>
+          <article class="step"><span class="number">03</span><h3>Lift and keep moving.</h3><p>Lift the pen or finger to finish. Valid parts of the stroke become fence tiles. Use the detour to lead your brood to safety before the fence breaks down.</p></article>
+        </div>
+        <aside class="fence-notes" aria-label="Fence rules and other ways to build">
+          <p><strong>These walls are temporary.</strong> Fences spend the supply shown at the bottom right; it slowly refills. They decay after a few seconds, and a fox cut off from its prey can chew through them. You cannot seal off the coop, strand a chick, or pen a predator into a corner. Refused sections are marked with a red cross.</p>
+          <p><strong>No tablet? You can still build.</strong> Left-click and drag with the mouse in either terminal, then release. Right-click to cancel a stroke. Or press <kbd>Space</kbd> to drop a hurdle on the first free tile behind your brood, unless you’re beside a latched gate. Direct finger drawing requires touchscreen input; a trackpad can use the usual mouse drag.</p>
+        </aside>
+      </div>
+    </section>
+
+    <section class="wrap split" aria-labelledby="predators-title">
+      <div>
+        <p class="eyebrow">03 / Trouble in the garden</p>
+        <h2 id="predators-title">Cute garden.<br>Hungry neighbours.</h2>
+        <p class="section-intro">Hedges hide you from a fox’s view, but your peeping brood can give you away. Watch the warning signs and keep your escape route open.</p>
+        <aside class="level-note"><h3>Six gardens. Then things get trickier.</h3><p>Start in Morning Meadow, then visit the Orchard, Kitchen Garden, Lily Pond, Hedge Maze, and Dusk. After Dusk, the gardens repeat with cleverer predators.</p></aside>
+      </div>
+      <div class="predators">
+        <article><h3>The fox</h3><p>It patrols, listens, and follows its nose. A “!” gives you a moment’s warning before it charges. If it grabs a chick, catch it before it reaches its den to make it drop the chick. Later foxes anticipate your route and work together.</p></article>
+        <article><h3>The weasel</h3><p>It slips through drainpipes and targets lone chicks. It won’t chase the hen, and it bolts when you approach. Stay close to your stragglers.</p></article>
+        <article><h3>The hawk</h3><p>Its shadow warns you two seconds before it swoops. Tall grass and the shade of a tree protect the chicks; open lawns leave them exposed.</p></article>
+      </div>
+    </section>
+
+    <section class="terminal-section" id="get-started" aria-labelledby="terminal-title">
+      <div class="wrap">
+        <p class="eyebrow">04 / Choose your terminal</p>
+        <h2 id="terminal-title">Made for Silkie.<br>Happy in kitty, too.</h2>
+        <p class="section-intro">To play, use <strong>Silkie or kitty</strong>. The game requires the kitty graphics protocol to display its garden and sprites. An ordinary text-only terminal won’t work. The rules, speed, scoring, and difficulty are the same in both supported terminals.</p>
+        <div class="terminals">
+          <article class="terminal">
+            <p class="eyebrow">The enhanced experience</p><h3>Silkie terminal</h3>
+            <p>Silkie is a fork of kitty with extra graphics, input, and timing protocols. The game detects and uses the extensions your terminal supports.</p>
+            <ul><li>Vector garden artwork and crisp title lettering.</li><li>Mouse, pen tablet, and supported touchscreen fence drawing, with terminal-side pen ink.</li><li>Frame pacing based on presentation reports, low-latency input, and translucent menus.</li><li>Haptic feedback and wide-gamut or HDR effects on supported hardware and settings.</li></ul>
+            <a class="terminal-link" href="https://silkie.goblinreactor.com/">Visit Silkie terminal <span aria-hidden="true">↗</span></a>
+          </article>
+          <article class="terminal">
+            <p class="eyebrow">The full game</p><h3>kitty terminal</h3>
+            <p>kitty is fully supported. You get the same flock to rescue, the same predators to outsmart, and the same six gardens to explore.</p>
+            <ul><li>Animated sprites and a garden rasterized by the game.</li><li>Mouse-drawn fences with a visible trail of dots.</li><li>Keyboard movement, gates, and quick fence placement.</li><li>The complete scoring system and level progression.</li></ul>
+            <a class="terminal-link" href="https://sw.kovidgoyal.net/kitty/">Visit kitty terminal <span aria-hidden="true">↗</span></a>
+          </article>
+        </div>
+        <div class="comparison" id="terminal-differences">
+          <h3>What changes between terminals?</h3>
+          <p>The differences are in presentation and input. Both terminals play the same game, including all levels, predators, fence rules, scoring, and difficulty.</p>
+          <table aria-describedby="comparison-note">
+            <caption>Silkie and kitty: feature comparison</caption>
+            <colgroup><col class="feature-column"><col><col></colgroup>
+            <thead><tr><th scope="col">Feature</th><th scope="col">Silkie</th><th scope="col">kitty</th></tr></thead>
+            <tbody>
+              <tr><th scope="row">Garden graphics</th><td>The terminal draws a retained vector garden. Gates and fences update with small patches, and resizing does not require a new garden bitmap.</td><td>The game renders the garden as a bitmap and uploads it per level and size step. Gates and fences use sprite placements.</td></tr>
+              <tr><th scope="row">Title lettering</th><td>Vector lettering stays crisp as it scales.</td><td>Bitmap lettering.</td></tr>
+              <tr><th scope="row">Animated sprites</th><td>Uploaded once and animated by moving placements, just as in kitty.</td><td>Uploaded once and animated by moving placements.</td></tr>
+              <tr><th scope="row">Drawing fences</th><td>Mouse, pen tablet, or supported touchscreen. With pen-ink support, the terminal draws the live stroke without waiting for a round trip to the game.</td><td>Mouse drawing, with a trail of dots drawn by the game. The finished fence follows the same rules.</td></tr>
+              <tr><th scope="row">Frame pacing</th><td>Uses the terminal’s presentation reports to match displayed frames and prevent queued frames from piling up on a slow connection.</td><td>Uses a timer to pace frames.</td></tr>
+              <tr><th scope="row">Input latency</th><td>Enables low-latency mode during play.</td><td>Normal terminal input handling.</td></tr>
+              <tr><th scope="row">Menus</th><td>Translucent panels over the garden.</td><td>Opaque panels.</td></tr>
+              <tr><th scope="row">Drawing pointer</th><td>A little wooden stake when image pointers are supported.</td><td>A crosshair.</td></tr>
+              <tr><th scope="row">Touch feedback</th><td>Trackpad haptics for gathering chicks, bringing them home, gates, and fences on supported hardware.</td><td>No game haptic feedback.</td></tr>
+              <tr><th scope="row">Colour and highlights</th><td>Wide-gamut sprites on Display P3 screens; HDR glints on sparkles, stars, and hearts when supported and Silkie’s <code>hdr</code> setting is <code>auto</code> or <code>always</code>.</td><td>sRGB colour without the Silkie HDR effects.</td></tr>
+              <tr><th scope="row">Display awareness</th><td>Uses display reports for refresh rate, pixel scale, and e-ink awareness.</td><td>No Silkie display-protocol enhancements.</td></tr>
+              <tr><th scope="row">Playing over SSH</th><td>The vector garden needs less data, terminal-side pen ink stays responsive, and frame pacing adapts to the connection.</td><td>Fully playable over SSH; garden bitmaps can take a moment to arrive on a slow link.</td></tr>
+            </tbody>
+          </table>
+          <p class="small" id="comparison-note">Silkie enhancements depend on the capabilities reported by the terminal, your hardware, and enabled settings. The game detects support at startup. Launch with <code>--kitty-only</code> in Silkie to compare the kitty presentation.</p>
+        </div>
+        <div class="setup split">
+          <div><h3>Build it. Open the garden.</h3><p>Install stable Rust <strong>1.85 or newer</strong> and Cargo. Download or clone this project, open its <code>silkie-scramble</code> directory in Silkie or kitty, then run:</p><pre><code>cargo build --release
+./target/release/silkie-scramble</code></pre><p class="small">Alternatively, <code>cargo install --path .</code> installs the <code>silkie-scramble</code> command on your path.</p></div>
+          <div><h3>Give the flock some room.</h3><p>A large terminal window with a small font gives the garden more pixels. Run directly in the terminal: tmux and screen require graphics passthrough that the game does not set up.</p><p>The game also works over SSH. To inspect the capabilities your terminal reports, run:</p><pre><code>./target/release/silkie-scramble --report</code></pre><p class="small">In Silkie, add <code>--kitty-only</code> when launching to try the kitty presentation.</p></div>
+        </div>
+      </div>
+    </section>
+
+    <section class="controls" id="controls" aria-labelledby="controls-title">
+      <div class="wrap split">
+        <div><p class="eyebrow">05 / Keep these under your wing</p><h2 id="controls-title">A few keys.<br>A whole lot of chicks.</h2><p>The hen keeps moving until she can turn in the direction you’ve asked for. Plan ahead at corners and leave enough room for the tail of your brood.</p><p>Timed gates raise a red flag before closing. Blue latched gates open or close when you press <kbd>Space</kbd> nearby, or click or tap the gate while the hen is next to it.</p></div>
+        <table>
+          <caption>In-game controls</caption>
+          <thead><tr><th scope="col">Input</th><th scope="col">Action</th></tr></thead>
+          <tbody>
+            <tr><th scope="row">Arrow keys / <kbd>WASD</kbd> / <kbd>HJKL</kbd></th><td>Move the hen.</td></tr>
+            <tr><th scope="row"><kbd>Space</kbd></th><td>Work a nearby latched gate, or drop a fence behind you.</td></tr>
+            <tr><th scope="row">Mouse drag</th><td>Draw a fence in either terminal.</td></tr>
+            <tr><th scope="row">Pen / touchscreen drag</th><td>Draw a fence in Silkie with supported input.</td></tr>
+            <tr><th scope="row">Right-click</th><td>Cancel the fence you’re drawing.</td></tr>
+            <tr><th scope="row"><kbd>P</kbd> / <kbd>Esc</kbd></th><td>Open the pause menu.</td></tr>
+            <tr><th scope="row"><kbd>F2</kbd> / <kbd>`</kbd></th><td>Toggle diagnostics.</td></tr>
+            <tr><th scope="row"><kbd>Ctrl</kbd> + <kbd>Z</kbd></th><td>Suspend; use <code>fg</code> in the shell to resume.</td></tr>
+            <tr><th scope="row"><kbd>Ctrl</kbd> + <kbd>C</kbd></th><td>Quit.</td></tr>
+          </tbody>
+        </table>
+      </div>
+    </section>
+  </main>
+  <footer class="wrap"><p>Silkie Scramble · Gather the chicks. Bring them home.</p><a href="README.md">Project README &amp; more options <span aria-hidden="true">↗</span></a></footer>
+</body>
+</html>

@@ -1,0 +1,28 @@
+; generated layout, hand-tuned
+name: Lily Pond
+tagline: Open lawns, a hawk overhead. Keep the brood near cover.
+chicks: 9
+foxes: 1
+hawk: yes
+cunning: 3
+fence: 8
+quota: 0.5
+map:
+pppppppppppppppppppppppppppppppp
+pCCCC,,,,..............,,,,,,,,p
+pCCCC,,,,,,,##bkbb##,,,,,,,,,c,p
+pCDCC,TT,,,,########,,,,,TT,,,,p
+p,H,,,TT,b,,,,,,,,,,c,,c,TT,,,,p
+p,,,,,,,,,wwwwwwwwwwww,,,,,,,,,p
+pb,##,,,*,wwwwwwwwwwww,,,,,##,,p
+pb,##,ff,wwwwwwwwwwwwww,ff,##,,p
+p,,##,ff,wwwwwwwwwwwwww,ff,##,,p
+p,,##,ff,wwwwwwwwwwwwww,ff,##,bp
+p,,##,,,,,wwwwwwwwwwww,*,,,##,kp
+p,,,,,,,,,wwwwwwwwwwww,,,,,,,,,p
+p,,,,,,,c,,,,,,*,,,,,,b,,,,,,,,p
+p,,,,,TT,,,,########,,,,,TT,,,,p
+p,,,,,TT,,,,##bbkb##,,,,,TT,,,,p
+pc,,,,,,,..............,,,,,,,,p
+p,,,,,,,,,,c,,,,,,,,,,,,,,,,,,Fp
+pppppppppppppppppppppppppppppppp

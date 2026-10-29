@@ -1,0 +1,29 @@
+; Level 1: introduces gathering, the coop, one fox and the latched gate.
+name: Morning Meadow
+tagline: Seven chicks are out on the lawn. The fox is still yawning.
+chicks: 7
+foxes: 1
+weasels: 0
+hawk: no
+fence: 8
+cunning: 1
+quota: 0.5
+map:
+pppppppppppppppppppppppppppppppp
+p,,,,,,,,,,,,,,,c,,,,,,,,,,,,,,p
+p.fff.###.www.#######.####.#F#.p
+p.fff.###.www.#######.####.###.p
+p......c.............*.........p
+p.###.TTT.fff.###.###.wwww.vvv.p
+p.###.TTT.fff.###.###.wwww.vvv.p
+p.....................wwww.....p
+p.CCCL###.sss.bbb.###.wwww.###.p
+p.CDC.###.sss.bkb.###.wwww.###.p
+p..H.........*................cp
+p.vvv.fff.#######.fff.####.#k#.p
+p.vvv.fff.#######.fff.####.###.p
+p....*..................c......p
+p.###.www.###.fff.###.vvvv.TTT.p
+p.###.www.###.fff.###.vvvv.TTT.p
+p,,,,,,,,,,,c,,,,,,,,,,,,,,,,,,p
+pppppppppppppppppppppppppppppppp
