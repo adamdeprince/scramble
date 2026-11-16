@@ -219,3 +219,11 @@ cargo run --release --example preview_sheet -- hen 96 hen.png
 * [assets/levels/README.md](assets/levels/README.md): the level file format.
 
 "Silkie Scramble" is a working title.
+
+## Licence
+
+Copyright 2026 Adam DePrince. Licensed under the
+[GNU General Public License, version 3 only](LICENSE). The Lilita One
+typeface in `assets/fonts/` is under the SIL Open Font License 1.1
+([OFL.txt](assets/fonts/OFL.txt)); see
+[assets/PROVENANCE.md](assets/PROVENANCE.md).
